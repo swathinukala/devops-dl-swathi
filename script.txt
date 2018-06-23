@@ -1,0 +1,8 @@
+
+SELECT E.EventDescription, UCEH.UnitControlEventID, UCEH.UnitAlarmSummaryHistoryID, UEH.UnitEventID, * FROM ParentEventHistory P(NOLOCK)
+JOIN UnitMaster U(NOLOCK) ON P.UnitMasterID=U.UnitMasterID
+LEFT JOIN UnitControlEventHistory UCEH(NOLOCK) ON P.ParentEventID=UCEH.ParentEventID
+LEFT JOIN UnitEventHistory UEH(NOLOCK) ON P.ParentEventID=UEH.ParentEventID
+JOIN EventMaster E(NOLOCK) ON P.EventMasterID=E.EventMasterID
+WHERE U.ReeferID='PRAN1110013'
+ORDER BY P.ParentEventID DESC
